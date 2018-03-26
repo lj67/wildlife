@@ -1,0 +1,29 @@
+<!--
+  Generated template for the SightingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>sighting</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+      <ion-item *ngFor="let class of classes">
+        <ion-thumbnail item-start>
+          <img src="img/thumbnail-totoro.png">
+        </ion-thumbnail>
+        <h2>{{class.Name}}</h2>
+        <p>More info</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+    </ion-list>
+
+</ion-content>
