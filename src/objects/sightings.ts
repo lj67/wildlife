@@ -5,7 +5,8 @@ export class Sightings{
 
     Id: number;
     Date: string;
-    Location: number;
+    lat: number;
+    long: number;
     Sightings: any[];
     TempId: number;
     WeatherId: number;

@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Geolocation } from '@ionic-native/geolocation';
+import {
+  GoogleMaps
+ } from '@ionic-native/google-maps';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -47,7 +51,9 @@ import { WildlifeProvider } from '../providers/wildlife/wildlife';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    WildlifeProvider
+    WildlifeProvider,
+    Geolocation,
+    GoogleMaps
   ]
 })
 export class AppModule {}
