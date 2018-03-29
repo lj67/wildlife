@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WildlifeProvider } from '../../providers/wildlife/wildlife';
 import { Observable } from 'rxjs/Observable';
 
+import { SightingDetailPage } from '../sighting-detail/sighting-detail';
+
 /**
  * Generated class for the SightingPage page.
  *
@@ -17,7 +19,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class SightingPage {
 
-  classes: Observable<any>
+  classes: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public wildlifeProvider: WildlifeProvider) {
   }
@@ -29,7 +31,22 @@ export class SightingPage {
   }
 
   getClasses(){
-    this.classes = this.wildlifeProvider.getClasses();
+    this.wildlifeProvider.getClasses().subscribe(
+      (classes: any[]) => {
+          this.classes = classes;
+          console.log(classes);
+          
+      },
+      err => {
+          // Log errors if any
+          console.log(err);
+      })
+  }
+
+  viewDetail(classId){
+    this.navCtrl.push(SightingDetailPage, {
+      classId: classId
+    });
   }
 
 

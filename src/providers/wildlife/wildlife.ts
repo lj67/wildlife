@@ -21,17 +21,18 @@ export class WildlifeProvider {
   }
 
   getClasses()  {
-    return this.http.get(this.apiRoot + "classes");
+    return this.http.get(this.apiRoot + "classes")
+      .map(res => res );
   }
 
-  getAllCreatures(): Observable<any[]> {
+  getAllCreatures() {
     return this.http.get(this.apiRoot + "creature")
-      .map((res: Response) => JSON.parse(res.json()));
+    .map(res => res );
   }
 
-  getCreaturesForClass(classId): Observable<any[]> {
+  getCreaturesForClass(classId) {
     return this.http.get(this.apiRoot + "creature?classId=" + classId)
-      .map((res: Response) => JSON.parse(res.json()));
+    .map(res => res );
   }
 
 }
