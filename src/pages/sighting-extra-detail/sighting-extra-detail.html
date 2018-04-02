@@ -1,0 +1,63 @@
+<!--
+  Generated template for the SightingExtraDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Extra Details</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="closeModal()">Skip</button>
+        </ion-buttons>
+        <ion-buttons end>
+        <button ion-button (click)="closeModal()">Save</button>
+        </ion-buttons>
+    </ion-navbar>
+    
+    </ion-header>
+
+
+<ion-content padding>
+    <ion-label>Weather</ion-label>
+    <ion-row >
+      <ion-col>
+        
+        <button ion-button [outline] = "sightings.WeatherId != 1" (click)="weatherClick(1)"><i class="wi wi-day-sunny"></i></button>
+      </ion-col>
+      <ion-col>
+        <button ion-button [outline] = "sightings.WeatherId != 2" (click)="weatherClick(2)"><i class="wi wi-day-sunny-overcast"></i></button>
+      </ion-col>
+      <ion-col>
+        <button ion-button [outline] = "sightings.WeatherId != 3" (click)="weatherClick(3)"><i class="wi wi-day-cloudy"></i></button>
+      </ion-col>
+      <ion-col>
+        <button ion-button [outline] = "sightings.WeatherId != 4" (click)="weatherClick(4)"><i class="wi wi-day-rain"></i></button>
+      </ion-col>
+    </ion-row>
+
+    <ion-label>Temperature</ion-label>
+    <ion-row >
+      <ion-col>
+        
+        <button ion-button [outline] = "sightings.TempId != 1" (click)="tempClick(1)"><i class="wi wi-thermometer"></i> 0 - 5 </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button [outline] = "sightings.TempId != 2" (click)="tempClick(2)"><i class="wi wi-thermometer"></i> 6 - 10 </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button [outline] = "sightings.TempId != 3" (click)="tempClick(3)"><i class="wi wi-thermometer"></i> 11 - 15 </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button [outline] = "sightings.TempId != 4" (click)="tempClick(4)"><i class="wi wi-thermometer"></i> 16 - 20 </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button [outline] = "sightings.TempId != 5" (click)="tempClick(5)"><i class="wi wi-thermometer"></i> 21 - 25 </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button [outline] = "sightings.TempId != 6" (click)="tempClick(6)"><i class="wi wi-thermometer"></i> 25 - 30 </button>
+      </ion-col>
+    </ion-row>
+
+</ion-content>

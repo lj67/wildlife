@@ -22,7 +22,7 @@
         </ion-thumbnail>
         <h2>{{class.Name}}</h2>
         <p>More info</p>
-        <button ion-button clear item-end>View</button>
+        <button ion-button clear item-end (click)="viewDetail(class.Id)">View</button>
       </ion-item>
     </ion-list>
 
