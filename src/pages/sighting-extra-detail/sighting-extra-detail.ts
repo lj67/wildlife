@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Sightings } from '../../objects/sightings';
 import { Geolocation } from '@ionic-native/geolocation';
 import {
@@ -11,6 +11,7 @@ import {
   MarkerOptions,
   Marker
  } from '@ionic-native/google-maps';
+import { WildlifeProvider } from '../../providers/wildlife/wildlife';
 
 /**
  * Generated class for the SightingExtraDetailPage page.
@@ -29,7 +30,11 @@ export class SightingExtraDetailPage {
   sightings: Sightings;
   map: GoogleMap;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private geolocation: Geolocation, 
+    public viewCtrl: ViewController, 
+    public wildlifeService: WildlifeProvider) {
 
     this.sightings = navParams.get('sightings');
   }
@@ -37,6 +42,8 @@ export class SightingExtraDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SightingExtraDetailPage');
     this.getPosition();
+
+    if (this.sightings.Date === undefined){ this.sightings.Date = (new Date()).toISOString().substring(0, 10);}
   }
 
   getPosition(){
@@ -56,6 +63,23 @@ export class SightingExtraDetailPage {
 
   weatherClick(id){
     this.sightings.WeatherId = id;
+  }
+
+  cancel(){
+      this.viewCtrl.dismiss();
+  }
+
+  save(){
+    this.wildlifeService.saveSightings(this.sightings).subscribe(
+        data => {
+            
+            console.log(data);
+            
+        },
+        err => {
+            // Log errors if any
+            console.log(err);
+        })
   }
 
   loadMap() {

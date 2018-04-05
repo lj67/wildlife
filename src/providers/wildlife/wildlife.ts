@@ -35,4 +35,9 @@ export class WildlifeProvider {
     .map(res => res );
   }
 
+  saveSightings(sightings){
+    return this.http.post(this.apiRoot + "trip", JSON.stringify(sightings))
+    .map(res => res );
+  }
+
 }

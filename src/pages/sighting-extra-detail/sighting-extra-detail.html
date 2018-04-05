@@ -9,10 +9,10 @@
     <ion-navbar>
         <ion-title>Extra Details</ion-title>
         <ion-buttons start>
-            <button ion-button (click)="closeModal()">Skip</button>
+            <button ion-button (click)="cancel()">Skip</button>
         </ion-buttons>
         <ion-buttons end>
-        <button ion-button (click)="closeModal()">Save</button>
+        <button ion-button (click)="save()">Save</button>
         </ion-buttons>
     </ion-navbar>
     
@@ -22,42 +22,57 @@
 <ion-content padding>
     <ion-label>Weather</ion-label>
     <ion-row >
-      <ion-col>
+      <ion-col text-center>
         
-        <button ion-button [outline] = "sightings.WeatherId != 1" (click)="weatherClick(1)"><i class="wi wi-day-sunny"></i></button>
+        <button ion-button  [outline] = "sightings.WeatherId != 1" (click)="weatherClick(1)"><i class="wi wi-day-sunny"></i></button>
       </ion-col>
-      <ion-col>
+      <ion-col text-center>
         <button ion-button [outline] = "sightings.WeatherId != 2" (click)="weatherClick(2)"><i class="wi wi-day-sunny-overcast"></i></button>
       </ion-col>
-      <ion-col>
+      <ion-col text-center>
         <button ion-button [outline] = "sightings.WeatherId != 3" (click)="weatherClick(3)"><i class="wi wi-day-cloudy"></i></button>
       </ion-col>
-      <ion-col>
+      <ion-col text-center>
         <button ion-button [outline] = "sightings.WeatherId != 4" (click)="weatherClick(4)"><i class="wi wi-day-rain"></i></button>
       </ion-col>
     </ion-row>
 
     <ion-label>Temperature</ion-label>
     <ion-row >
+        <ion-col>
+    
+            <button ion-button block [outline] = "sightings.TempId != 1" (click)="tempClick(1)"><i padding-right class="wi wi-thermometer"></i> < 0 </button>
+        </ion-col>
       <ion-col>
         
-        <button ion-button [outline] = "sightings.TempId != 1" (click)="tempClick(1)"><i class="wi wi-thermometer"></i> 0 - 5 </button>
+        <button ion-button block [outline] = "sightings.TempId != 2" (click)="tempClick(2)"><i padding-right  class="wi wi-thermometer"></i> 0 - 5 </button>
       </ion-col>
       <ion-col>
-        <button ion-button [outline] = "sightings.TempId != 2" (click)="tempClick(2)"><i class="wi wi-thermometer"></i> 6 - 10 </button>
+        <button ion-button block [outline] = "sightings.TempId != 3" (click)="tempClick(3)"><i padding-right  class="wi wi-thermometer"></i> 6 - 10 </button>
       </ion-col>
       <ion-col>
-        <button ion-button [outline] = "sightings.TempId != 3" (click)="tempClick(3)"><i class="wi wi-thermometer"></i> 11 - 15 </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button [outline] = "sightings.TempId != 4" (click)="tempClick(4)"><i class="wi wi-thermometer"></i> 16 - 20 </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button [outline] = "sightings.TempId != 5" (click)="tempClick(5)"><i class="wi wi-thermometer"></i> 21 - 25 </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button [outline] = "sightings.TempId != 6" (click)="tempClick(6)"><i class="wi wi-thermometer"></i> 25 - 30 </button>
+        <button ion-button block [outline] = "sightings.TempId != 4" (click)="tempClick(4)"><i padding-right  class="wi wi-thermometer"></i> 11 - 15 </button>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button block [outline] = "sightings.TempId != 5" (click)="tempClick(5)"><i padding-right  class="wi wi-thermometer"></i> 16 - 20 </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button block [outline] = "sightings.TempId != 6" (click)="tempClick(6)"><i padding-right  class="wi wi-thermometer"></i> 21 - 25 </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button block [outline] = "sightings.TempId != 7" (click)="tempClick(7)"><i padding-right  class="wi wi-thermometer"></i> 25 - 30 </button>
+      </ion-col>
+      <ion-col>
+            <button ion-button block [outline] = "sightings.TempId != 8" (click)="tempClick(8)"><i padding-right  class="wi wi-thermometer"></i> 30+ </button>
+        </ion-col>
+    </ion-row>
 
+    <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="sightings.Date"></ion-datetime>
+    </ion-item>
+
+    <button ion-button block (click)="save()">Save</button>
 </ion-content>

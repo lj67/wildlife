@@ -22,6 +22,7 @@ export class SightingDetailPage {
   creatures: any[];
   classId: number;
   sightings: Sightings = new Sightings();
+  modal;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public wildlifeProvider: WildlifeProvider, public modalCtrl: ModalController) {
 
@@ -57,9 +58,10 @@ export class SightingDetailPage {
   }
 
   save(){ 
-    let modal = this.modalCtrl.create(SightingExtraDetailPage,{sightings: this.sightings});
-    modal.present();
+    this.modal = this.modalCtrl.create(SightingExtraDetailPage,{sightings: this.sightings});
+    this.modal.present();
     
   }
+
 
 }
