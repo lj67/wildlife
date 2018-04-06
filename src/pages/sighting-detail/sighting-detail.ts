@@ -49,15 +49,26 @@ export class SightingDetailPage {
   }
 
   addSighting(creature){
-    if (creature.total == undefined) creature.total = 0;
-    creature.total ++;
+    if (creature.Total == undefined) creature.Total = 0;
+    creature.Total ++;
   }
 
   removeSighting(creature){
-    if (creature.total > 0) creature.total--;
+    if (creature.Total > 0) creature.Total--;
+  }
+
+  addCreaturesToSightings(){
+    this.sightings.Sightings = [];
+    this.creatures.forEach(creature => {
+      if (creature.Total > 0){
+        this.sightings.Sightings.push(creature);
+      }
+    });
+
   }
 
   save(){ 
+    this.addCreaturesToSightings();
     this.modal = this.modalCtrl.create(SightingExtraDetailPage,{sightings: this.sightings});
     this.modal.present();
     

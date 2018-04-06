@@ -27,7 +27,7 @@
           <h2>{{creature.Name}}</h2>
           <p>More info</p>
           <button ion-button item-end (click)="addSighting(creature)"><ion-icon name="add"></ion-icon></button>
-          <span *ngIf="creature.total > 0">Sightings: {{creature.total}}</span>
+          <span *ngIf="creature.Total > 0">Sightings: {{creature.Total}}</span>
           <button ion-button item-end (click)="addSighting(creature)"><ion-icon name="remove"></ion-icon></button>
         </ion-item>
       </ion-list>
