@@ -13,6 +13,7 @@ import { Http, Response } from '@angular/http';
 */
 @Injectable()
 export class WildlifeProvider {
+    
 
   apiRoot:string = 'http://www.newburyrealale.co.uk/nature/api/v1/';
 
