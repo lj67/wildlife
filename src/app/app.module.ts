@@ -7,6 +7,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import {
   GoogleMaps
  } from '@ionic-native/google-maps';
+ import { Toast } from '@ionic-native/toast';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -56,7 +57,8 @@ import { HistoryPage } from '../pages/history/history';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     WildlifeProvider,
     Geolocation,
-    GoogleMaps
+    GoogleMaps,
+    Toast
   ]
 })
 export class AppModule {}
