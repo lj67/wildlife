@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Sightings } from '../../objects/sightings';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Toast } from '@ionic-native/toast';
 import {
   GoogleMaps,
   GoogleMap,
@@ -34,7 +35,8 @@ export class SightingExtraDetailPage {
     public navParams: NavParams, 
     private geolocation: Geolocation, 
     public viewCtrl: ViewController, 
-    public wildlifeService: WildlifeProvider) {
+    public wildlifeService: WildlifeProvider,
+    private toast: Toast) {
 
     this.sightings = navParams.get('sightings');
   }
@@ -69,11 +71,22 @@ export class SightingExtraDetailPage {
       this.viewCtrl.dismiss();
   }
 
+  showToast(){
+    this.toast.show(`Saved sightings`, '5000', 'center').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
+  }
+
   save(){
     this.wildlifeService.saveSightings(this.sightings).subscribe(
         data => {
             
             console.log(data);
+            this.showToast();
+
+
             
         },
         err => {

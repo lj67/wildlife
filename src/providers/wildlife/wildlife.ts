@@ -13,6 +13,7 @@ import { Http, Response } from '@angular/http';
 */
 @Injectable()
 export class WildlifeProvider {
+    
 
   apiRoot:string = 'http://www.newburyrealale.co.uk/nature/api/v1/';
 
@@ -37,6 +38,11 @@ export class WildlifeProvider {
 
   saveSightings(sightings){
     return this.http.post(this.apiRoot + "trip", JSON.stringify(sightings))
+    .map(res => res );
+  }
+
+  getSightings() {
+    return this.http.get(this.apiRoot + "sighting")
     .map(res => res );
   }
 
