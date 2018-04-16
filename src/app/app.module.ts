@@ -19,6 +19,7 @@ import { SightingExtraDetailPage } from '../pages/sighting-extra-detail/sighting
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WildlifeProvider } from '../providers/wildlife/wildlife';
+import { HistoryPage } from '../pages/history/history';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { WildlifeProvider } from '../providers/wildlife/wildlife';
     TabsPage,
     SightingPage,
     SightingDetailPage,
-    SightingExtraDetailPage
+    SightingExtraDetailPage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { WildlifeProvider } from '../providers/wildlife/wildlife';
     TabsPage,
     SightingPage,
     SightingDetailPage,
-    SightingExtraDetailPage
+    SightingExtraDetailPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,

@@ -41,4 +41,9 @@ export class WildlifeProvider {
     .map(res => res );
   }
 
+  getSightings() {
+    return this.http.get(this.apiRoot + "sighting")
+    .map(res => res );
+  }
+
 }
