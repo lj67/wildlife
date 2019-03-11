@@ -1,3 +1,20 @@
 page-creature-list {
+    img {
+        max-width: 50px;
+        max-height: 50px;
+    }
+
+    .class-list {
+        transition: 0.2s linear;
+    }   
+
+    .class-list ion-icon{
+        align-self: baseline;
+    }
+
+    .collapsed {
+        height: 0 !important;
+    }
+
 
 }

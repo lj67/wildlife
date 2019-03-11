@@ -21,6 +21,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WildlifeProvider } from '../providers/wildlife/wildlife';
 import { HistoryPage } from '../pages/history/history';
+import { ImageListPage } from '../pages/image-list/image-list';
+import { CreatureListPage } from '../pages/creature-list/creature-list';
+import { CreatureListDetailPage } from '../pages/creature-list-detail/creature-list-detail';
+import { SortCreaturesPipe } from '../pipes/sort-creatures/sort-creatures';
+import { SightingsForCreaturePage } from '../pages/sightings-for-creature/sightings-for-creature';
+import { SightingsForCreatureStatsPage } from '../pages/sightings-for-creature-stats/sightings-for-creature-stats';
+import { ImagesForCreaturePage } from '../pages/images-for-creature/images-for-creature';
+import { PipesModule } from '../pipes/pipes.module';
+import { ChartsModule } from 'ng2-charts';
+import { FlightTimesPage } from '../pages/flight-times/flight-times';
+import { FlightTimeComponent } from '../components/flight-time/flight-time';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -32,12 +44,22 @@ import { HistoryPage } from '../pages/history/history';
     SightingPage,
     SightingDetailPage,
     SightingExtraDetailPage,
-    HistoryPage
+    HistoryPage,
+    ImageListPage,
+    CreatureListPage,
+    CreatureListDetailPage,
+    SightingsForCreaturePage,
+    SightingsForCreatureStatsPage,
+    ImagesForCreaturePage,
+    FlightTimesPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    PipesModule,
+    ChartsModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,7 +71,15 @@ import { HistoryPage } from '../pages/history/history';
     SightingPage,
     SightingDetailPage,
     SightingExtraDetailPage,
-    HistoryPage
+    HistoryPage,
+    ImageListPage,
+    CreatureListPage,
+    CreatureListDetailPage,
+    SightingsForCreaturePage,
+    SightingsForCreatureStatsPage,
+    ImagesForCreaturePage,
+    FlightTimesPage
+
   ],
   providers: [
     StatusBar,

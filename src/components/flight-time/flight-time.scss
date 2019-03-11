@@ -1,0 +1,67 @@
+flight-time {
+
+    .bar {
+        display: inline-block;
+    }
+
+    .bar-none {
+        background-color: #f1f2f4;
+    }
+
+    .bar-low {
+        background-color: #86c7f3;
+    }
+
+    .bar-med {
+        background-color: #ffe29a;
+    }
+
+
+    .bar-high {
+        background-color: #ffa1b5;
+    }
+
+    .x-axis {
+        display: inline-block;
+        width: calc(100%/44);
+        font-size: 6px;
+        border-top: 1px solid rgb(199, 199, 199);
+        text-align: center;
+        border-right: 1px solid rgb(199, 199, 199);
+        /* height: 50px; */
+        text-orientation: sideways;
+        writing-mode: vertical-rl;
+        height: 20px;
+    }
+
+    .x-axis-label {
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .x-axis-holder {
+        margin-top: 10px;
+    }
+
+    .legend {
+        display: inline-block;
+        padding: 2px;
+        color:  #636363;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .legend-holder {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .current-week {
+        background-color: #86c7f3;
+    }
+
+    .title {
+        font-size: 14px;
+        text-align: center
+    }
+}

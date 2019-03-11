@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>sighting</ion-title>
+    <ion-title>Add Sighting</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,11 +18,11 @@
   <ion-list>
       <ion-item *ngFor="let class of classes">
         <ion-thumbnail item-start>
-          <img src="img/thumbnail-totoro.png">
+          <img src="{{wildlifeProvider.imageBaseUrl + class.imageName}}" *ngIf="class.imageName">
         </ion-thumbnail>
-        <h2>{{class.Name}}</h2>
+        <h2>{{class.name}}</h2>
         <p>More info</p>
-        <button ion-button clear item-end (click)="viewDetail(class.Id)">View</button>
+        <button ion-button clear item-end (click)="viewDetail(class.id)">View</button>
       </ion-item>
     </ion-list>
 

@@ -15,7 +15,8 @@ import { Http, Response } from '@angular/http';
 export class WildlifeProvider {
     
 
-  apiRoot:string = 'http://www.newburyrealale.co.uk/nature/api/v1/';
+  apiRoot:string = 'https://www.newburyrealale.co.uk/nature/api/v1/';
+  imageBaseUrl = "https://www.newburyrealale.co.uk/nature/images/";
 
   constructor(public http: HttpClient) {
     console.log('Hello WildlifeProvider Provider');
@@ -37,12 +38,47 @@ export class WildlifeProvider {
   }
 
   saveSightings(sightings){
-    return this.http.post(this.apiRoot + "trip", JSON.stringify(sightings))
+    return this.http.post(this.apiRoot + "sighting", JSON.stringify(sightings))
+    .map(res => res );
+  }
+
+  updateSightings(sightings){
+    return this.http.put(this.apiRoot + "sighting", JSON.stringify(sightings))
     .map(res => res );
   }
 
   getSightings() {
     return this.http.get(this.apiRoot + "sighting")
+    .map(res => res );
+  }
+
+  getSightingsForCreature(creatureId) {
+    return this.http.get(this.apiRoot + "sighting?creatureId=" + creatureId )
+    .map(res => res );
+  }
+
+  getImages(id, tripId, rating) {
+    return this.http.get(this.apiRoot + "image?id=" + id + "&tripId=" + tripId + "&rating=" + rating)
+    .map(res => res );
+  }
+
+  getImagesForCreature(id, tripId, rating, creatureId) {
+    return this.http.get(this.apiRoot + "image?id=" + id + "&tripId=" + tripId + "&rating=" + rating + "&creatureId=" + creatureId)
+    .map(res => res );
+  }
+
+  getStatsForCreature(creatureId){
+    return this.http.get(this.apiRoot + "stats?type=all?" +"&creatureId=" + creatureId)
+    .map(res => res );
+  }
+
+  getFlightTimes(creatureId){
+    return this.http.get(this.apiRoot + "flightTimes?" +"creatureId=" + creatureId)
+    .map(res => res );
+  }
+
+  getLocations(){
+    return this.http.get(this.apiRoot + "location")
     .map(res => res );
   }
 

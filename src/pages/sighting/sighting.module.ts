@@ -4,7 +4,6 @@ import { SightingPage } from './sighting';
 
 @NgModule({
   declarations: [
-    SightingPage,
   ],
   imports: [
     IonicPageModule.forChild(SightingPage),

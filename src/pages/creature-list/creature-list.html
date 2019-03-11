@@ -14,20 +14,44 @@
 
 
 <ion-content padding>
-    <div padding>
-        <button ion-button block (click)="showRefineMenu()">Filter </button>
-    </div>
+    <button ion-button [outline] = "orderMode != 'name'" (click)="orderMode = 'name'">
+      Name
+    </button>
+    <button ion-button [outline] = "orderMode != 'family'" (click)="orderMode = 'family'">
+      Family
+    </button>
+
+    <ion-list>
+        <ion-item *ngFor="let class of classes" text-wrap (click)="expandItem(class)" class="class-list">
+          <div>{{class.name}}</div>
+          <ion-icon color="success" item-right [name]="class.expanded ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+          <ion-list *ngIf="class.expanded">
+            <ion-item *ngFor="let creature of class.creatures | sortCreatures: {property: orderMode, order: 1}" text-wrap class="creature" (click)="viewDetail(creature, $event)">
+              {{creature.name}}
+           
+            </ion-item>
+          </ion-list>
+        </ion-item>
+      </ion-list>
     
   
-    <ion-list>
-      <ion-item *ngFor="let drink of drinks" (click)="viewDrink(drink)">
-        <ion-avatar item-start>
-          <img src="{{logoPath + drink.DrinkLogo}}">
-        </ion-avatar>
-        <h2>{{drink.Name}}</h2>
-        <p>{{drink.BreweryName}}</p>
-        <ion-note item-end>{{drink.Strength}}%</ion-note>
-  
-      </ion-item>
-    </ion-list>
+    <!-- <ion-list>
+        <ion-list-header *ngFor="let class of classes" (click)="expandItem(class)">
+            Ionic 2 Accordion Example.
+          </ion-list-header>
+
+        <expandable [expandHeight]="itemExpandHeight" [expanded]="class.expanded">
+      
+              <ion-item *ngFor="let creature of class.creatures" >
+                <ion-thumbnail item-start>
+                  <img src="{{wildlifeProvider.imageBaseUrl + creature.imageName}}" *ngIf="class.imageName">
+                </ion-thumbnail>
+                
+                <button ion-button clear item-end (click)="viewDetail(class.id)">View</button>
+              </ion-item>
+       
+        </expandable>
+
+    </ion-list> -->
+    
 </ion-content>

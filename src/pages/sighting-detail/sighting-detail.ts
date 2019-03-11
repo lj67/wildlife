@@ -4,6 +4,7 @@ import { WildlifeProvider } from '../../providers/wildlife/wildlife';
 import { Sightings } from '../../objects/sightings';
 
 import { SightingExtraDetailPage } from '../sighting-extra-detail/sighting-extra-detail';
+import { Sighting } from '../../objects/sighting';
 
 /**
  * Generated class for the SightingDetailPage page.
@@ -19,9 +20,9 @@ import { SightingExtraDetailPage } from '../sighting-extra-detail/sighting-extra
 })
 export class SightingDetailPage {
 
-  creatures: any[];
+  creatures: any[] = [];
   classId: number;
-  sightings: Sightings = new Sightings();
+  sightings: Sightings = new Sightings;
   modal;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public wildlifeProvider: WildlifeProvider, public modalCtrl: ModalController) {
@@ -48,20 +49,32 @@ export class SightingDetailPage {
       })
   }
 
+  canSave(){
+    let canSave = false;
+    this.creatures.forEach(creature => {
+      if (creature.total > 0){
+        canSave = true;
+      }
+    });
+
+    return canSave;
+
+  }
+
   addSighting(creature){
-    if (creature.Total == undefined) creature.Total = 0;
-    creature.Total ++;
+    if (creature.total == undefined) creature.total = 0;
+    creature.total ++;
   }
 
   removeSighting(creature){
-    if (creature.Total > 0) creature.Total--;
+    if (creature.total > 0) creature.total--;
   }
 
   addCreaturesToSightings(){
-    this.sightings.Sightings = [];
+    this.sightings.creatures = [];
     this.creatures.forEach(creature => {
-      if (creature.Total > 0){
-        this.sightings.Sightings.push(creature);
+      if (creature.total > 0){
+        this.sightings.creatures.push(creature);
       }
     });
 
@@ -69,7 +82,7 @@ export class SightingDetailPage {
 
   save(){ 
     this.addCreaturesToSightings();
-    this.modal = this.modalCtrl.create(SightingExtraDetailPage,{sightings: this.sightings});
+    this.modal = this.modalCtrl.create(SightingExtraDetailPage,{sightings: this.sightings, mode: 1});
     this.modal.present();
     
   }

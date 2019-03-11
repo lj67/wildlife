@@ -1,0 +1,20 @@
+page-sightings-for-creature {
+
+    .total-sightings {
+        background-color: color($colors, primary, base);
+        color: #FFF;
+        text-align: center;
+        margin: 10px;
+        padding: 10px;
+        padding-top: 20px;
+    }
+
+    .total-sightings-year {
+        background-color: color($colors, secondary, base);
+        color: #FFF;
+        text-align: center;
+        margin: 10px;
+        padding: 10px;
+        padding-top: 20px;
+    }
+}

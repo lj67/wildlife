@@ -4,7 +4,6 @@ import { CreatureListDetailPage } from './creature-list-detail';
 
 @NgModule({
   declarations: [
-    CreatureListDetailPage,
   ],
   imports: [
     IonicPageModule.forChild(CreatureListDetailPage),

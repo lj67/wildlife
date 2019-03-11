@@ -1,5 +1,26 @@
-@import '../assets/weather-fonts/font/weather-icons.min.css';
+
 
 page-sighting-extra-detail {
+
+  .item-md .item-button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.ios, .md {
+
+    page-sighting-extra-detail {
+
+      .scroll {
+        height: 100%
+      }
+
+      #map {
+        width: 100%;
+        height: 100%;
+      }
+
+    }
 
 }

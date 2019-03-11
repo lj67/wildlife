@@ -4,7 +4,6 @@ import { SightingExtraDetailPage } from './sighting-extra-detail';
 
 @NgModule({
   declarations: [
-    SightingExtraDetailPage,
   ],
   imports: [
     IonicPageModule.forChild(SightingExtraDetailPage),

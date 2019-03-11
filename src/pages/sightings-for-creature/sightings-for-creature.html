@@ -1,0 +1,46 @@
+<!--
+  Generated template for the SightingsForCreaturePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{creature.name}} Sightings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-row>
+      <ion-col class="total-sightings" >
+        <div color="primary">
+            <h5>Total</h5>
+            <h1>{{getTotalSightings()}}</h1>
+        </div>
+        
+      </ion-col>
+      <ion-col class="total-sightings-year" color="secondary">
+          <h5>Total {{getCurrentYear()}}</h5>
+          <h1>{{getTotalSightingsForYear()}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-list>
+      <ion-item *ngFor="let sighting of sightings">
+        <div class="date">
+            {{sighting.trip.date}}
+        </div>
+        <div class="name">
+            {{sighting.creature.name}}
+        </div>
+        <div class="total" *ngIf="sighting.total > 1">
+            x{{sighting.total}}
+        </div>
+        <button ion-button clear item-end (click)="viewInfo(sighting)" >View</button>
+      </ion-item>
+    </ion-list>
+  
+  </ion-content>

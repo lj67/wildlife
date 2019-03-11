@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>SightingDetail</ion-title>
+    <ion-title>Add Sighting</ion-title>
     <ion-buttons end>
-        <button ion-button color="secondary" (click)="save()">Save</button>
+        <button ion-button color="secondary" (click)="save()" *ngIf="canSave()">Save</button>
     </ion-buttons>
     
   </ion-navbar>
@@ -20,15 +20,17 @@
 <ion-content padding>
 
     <ion-list>
-        <ion-item *ngFor="let creature of creatures">
+        <ion-item *ngFor="let creature of creatures" class="creature">
           <ion-thumbnail item-start>
-            <img src="img/thumbnail-totoro.png">
+            <img src="{{wildlifeProvider.imageBaseUrl + creature.imageName}}" *ngIf="creature.imageName">
           </ion-thumbnail>
-          <h2>{{creature.Name}}</h2>
-          <p>More info</p>
-          <button ion-button item-end (click)="addSighting(creature)"><ion-icon name="add"></ion-icon></button>
-          <span *ngIf="creature.Total > 0">Sightings: {{creature.Total}}</span>
-          <button ion-button item-end (click)="addSighting(creature)"><ion-icon name="remove"></ion-icon></button>
+          <div>{{creature.name}} </div>
+          <div>
+          
+            <button class="qty-button" ion-button item-end (click)="addSighting(creature)"><ion-icon name="add"></ion-icon></button>
+            <button class="qty-button" ion-button item-end (click)="removeSighting(creature)"><ion-icon name="remove"></ion-icon></button>
+            <ion-badge color="secondary" slot="end" *ngIf="creature.total > 0">{{creature.total}}</ion-badge>
+        </div>
         </ion-item>
       </ion-list>
 
@@ -36,6 +38,6 @@
 
 <ion-footer>
     <ion-toolbar>
-      <button ion-button (click)="save()">Save</button>
+      <button ion-button (click)="save()" *ngIf="canSave()">Save</button>
     </ion-toolbar>
   </ion-footer>
