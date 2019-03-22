@@ -1,0 +1,58 @@
+<!--
+  Generated template for the ButterflySearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Butterfly Search</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    
+        <ion-item class="no-pad-left">
+          <ion-label>Primary Colour</ion-label>
+          <ion-select  placeholder="Select Colour" [(ngModel)]="creatureFilter.colour">
+              <ion-option value="{{color}}" *ngFor="let color of colors">{{color}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="no-pad-left">
+            <ion-label>Secondary Colour</ion-label>
+            <ion-select placeholder="Select Colour" >
+                <ion-option value="{{color}}" *ngFor="let color of colors">{{color}}</ion-option>
+            </ion-select>
+        </ion-item>
+        
+        
+            <ion-label>Size</ion-label>
+            <ion-item text-center>
+              
+                <button ion-button [outline] = "creatureFilter.size != 'Small'" (click)="creatureFilter.size = 'Small'">Small</button>
+              
+            
+                <button ion-button [outline] = "creatureFilter.size != 'Medium'" (click)="setSize('Medium')">Medium</button>
+          
+           
+                <button ion-button [outline] = "creatureFilter.size != 'Large'" (click)="creatureFilter.size = 'Large'">Large</button>
+         
+            </ion-item>
+
+              <ion-label center *ngIf="(creatures | butterflyFilter: creatureFilter).length > 0">Found: {{(creatures | butterflyFilter: creatureFilter).length}}</ion-label>
+              <ion-label center *ngIf="(creatures | butterflyFilter: creatureFilter).length == 0" text-center>No Butterflies matched search criteria</ion-label>
+      <ion-list>
+        <ion-item *ngFor="let creature of creatures | butterflyFilter: creatureFilter" class="creature">
+          <ion-thumbnail item-start>
+            <img src="{{wildlifeProvider.imageBaseUrl + creature.imageName}}" *ngIf="creature.imageName">
+          </ion-thumbnail>
+          <div>{{creature.name}} </div>
+        </ion-item>
+      </ion-list>
+      
+
+</ion-content>

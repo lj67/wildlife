@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title>Sighting Details</ion-title>
          <ion-buttons start>
-            <button ion-button (click)="cancel()">Skip</button>
+            <button ion-button (click)="cancel()">Cancel</button>
         </ion-buttons> 
         <ion-buttons end *ngIf="canSave()">
         <button ion-button (click)="save()">Save</button>
@@ -20,6 +20,8 @@
 
 
 <ion-content padding>
+
+    <ion-label *ngIf="mode == 1">Step 3: Enter Details</ion-label>
 
     <ion-list *ngIf="mode == 2">
         <ion-item >
@@ -97,23 +99,42 @@
     </ion-item>
 
     <ion-label>Location</ion-label>
-    <ion-list>
+
+    <button ion-button block (click)="showLocationModal()"  *ngIf="locationsWithinKm.length == 0">Enter New Location</button>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <div>
+            <ion-select placeholder="Select Location" [(ngModel)]="sightings.trip.locationId" *ngIf="locationsWithinKm.length > 0">
+                <ion-option value="{{location.id}}" *ngFor="let location of locationsWithinKm">{{location.name}}</ion-option>
+            </ion-select>
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div>
+            <button ion-button (click)="showLocationModal()"  *ngIf="locationsWithinKm.length > 0">New</button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    
+    <!-- <ion-list>
       <ion-item>
           <ion-label class="label-hdr">Location Name</ion-label>
-        <ion-select class="select" value="0" okText="Okay" cancelText="Dismiss" [(ngModel)]="selectedLocation">
-          <ion-option value="{{location.id}}" *ngFor="let location of Locations">{{location.name}}</ion-option>
-        </ion-select>
+          <ion-label class="label-hdr" *ngIf="sightings.location">{{sightings.location.name}}</ion-label>
       </ion-item>
-    </ion-list>
+    </ion-list> -->
     <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
 
     <ion-list>
       <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
     </ion-list>
     <div #map id="map"></div> 
-    {{sightings.trip.latitude}} {{sightings.trip.longitude}}
+    <!-- {{sightings.trip.latitude}} {{sightings.trip.longitude}} -->
 
-    <table class="table table-striped">
+    <!-- <table class="table table-striped">
       <tr>
         <th>Location</th>
         <th>Distance</th>
@@ -122,7 +143,7 @@
         <td>{{location.name}}</td>
         <td>{{location.distance}}</td>
       </tr>
-    </table>
+    </table> -->
 
     <button ion-button block (click)="save()" *ngIf="canSave()">Save</button>
 </ion-content>

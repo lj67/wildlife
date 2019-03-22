@@ -24,3 +24,19 @@ page-sighting-extra-detail {
     }
 
 }
+
+.toast-success {
+  > div{
+       background-color:#32db64!important;
+   }
+}
+
+.toast-warning {
+  > div{
+       background-color:#db4b32!important;
+   }
+}
+
+ion-select {
+  max-width: 100%;
+}

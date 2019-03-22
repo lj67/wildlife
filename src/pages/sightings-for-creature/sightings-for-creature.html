@@ -28,19 +28,6 @@
           <h1>{{getTotalSightingsForYear()}}</h1>
       </ion-col>
     </ion-row>
-    <ion-list>
-      <ion-item *ngFor="let sighting of sightings">
-        <div class="date">
-            {{sighting.trip.date}}
-        </div>
-        <div class="name">
-            {{sighting.creature.name}}
-        </div>
-        <div class="total" *ngIf="sighting.total > 1">
-            x{{sighting.total}}
-        </div>
-        <button ion-button clear item-end (click)="viewInfo(sighting)" >View</button>
-      </ion-item>
-    </ion-list>
+    <sightings-list [sightings]="sightings" [showImage]="false"></sightings-list>
   
   </ion-content>

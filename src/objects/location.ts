@@ -7,8 +7,10 @@ export class Location{
     name: string;
     address: string;
     typeId: any[];
+    typeName: string;
     latitude: number;
     longitude: number;
     distance: number;
+    imageName: string;
 
 }

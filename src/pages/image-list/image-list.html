@@ -8,13 +8,16 @@
 
   <ion-navbar>
     <ion-title>Images</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="toggleEditMode()"><ion-icon name="create"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
 
-  <img src="https://www.newburyrealale.co.uk/nature/images/{{image.filename}}" *ngFor="let image of images">
+  <image-list [images]="images" [editMode]="isEditMode"></image-list>
 
 </ion-content>

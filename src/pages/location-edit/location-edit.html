@@ -1,0 +1,44 @@
+<!--
+  Generated template for the LocationEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Location</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="close()">Close</button>
+    </ion-buttons>
+    
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="locationForm" (ngSubmit)="save()">
+        <ion-item>
+          <ion-label>Name</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Type</ion-label>
+            <ion-select formControlName="type" placeholder="Select Location Type">
+                <ion-option value="{{type.id}}" *ngFor="let type of locationTypes">{{type.name}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Latitude</ion-label>
+            <ion-input type="text" formControlName="latitude"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Longitude</ion-label>
+            <ion-input type="text" formControlName="longitude"></ion-input>
+          </ion-item>
+        <button ion-button block type="submit" class="save-button" [disabled]="!locationForm.valid">Save</button>
+      </form>
+
+</ion-content>

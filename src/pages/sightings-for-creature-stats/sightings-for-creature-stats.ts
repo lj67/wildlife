@@ -40,6 +40,8 @@ export class SightingsForCreatureStatsPage {
     legend: {position: 'right'}
   };
 
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public wildlifeProvider: WildlifeProvider, public modalCtrl: ModalController,
     public loadingController: LoadingController) {

@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController, App, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, App, LoadingController, ModalController } from 'ionic-angular';
 import { Sightings } from '../../objects/sightings';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
@@ -16,6 +16,7 @@ import { WildlifeProvider } from '../../providers/wildlife/wildlife';
 import { SightingPage } from '../sighting/sighting';
 import { TabsPage } from '../tabs/tabs';
 import { Location } from '../../objects/location';
+import { LocationEditPage } from '../location-edit/location-edit';
 
 /**
  * Generated class for the SightingExtraDetailPage page.
@@ -50,6 +51,8 @@ export class SightingExtraDetailPage {
   savingIndicator;
   locations: Location[] = [];
   currentLocationLatLng = "";
+  locationModal;
+  locationsWithinKm: Location[] = [];
 
 
   constructor(public navCtrl: NavController, 
@@ -61,7 +64,8 @@ export class SightingExtraDetailPage {
     public toastController: ToastController,
     public zone: NgZone,
     public appCtrl: App,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,
+    public modalCtrl: ModalController) {
 
     this.sightings = navParams.get('sightings');
     this.mode = navParams.get('mode'); //1 = new, 2 = update, 3 = view-only
@@ -71,8 +75,9 @@ export class SightingExtraDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SightingExtraDetailPage');
     //this.getPosition();
+    this.locationsWithinKm = [];
     this.loadMap();
-    this.getLocations();
+    //this.getLocations();
 
     if (this.sightings.trip.date === undefined){ this.sightings.trip.date = (new Date()).toISOString().substring(0, 10);}
     if (this.sightings.trip.time === undefined){ this.sightings.trip.time = (new Date()).getHours() + ":" + new Date().getMinutes() ;}
@@ -96,11 +101,15 @@ export class SightingExtraDetailPage {
 
     //let map = new google.maps();
 
+    this.locationsWithinKm = [];
+
     this.locations.forEach(location => {
       let latLng = new google.maps.LatLng(location.latitude, location.longitude);
       console.log(latLng.lat() + " " + latLng.lng());
       location.distance = google.maps.geometry.spherical.computeDistanceBetween (latLng, this.currentLocationLatLng);
-      
+      if (location.distance <= 1000){
+        this.locationsWithinKm.push(location);
+      }
     });
 
     this.sortLocations("distance", "ASC");
@@ -116,6 +125,24 @@ export class SightingExtraDetailPage {
         return 0;
     });
   } 
+
+  showLocationModal(){
+    let location = new Location;
+    location.latitude = this.sightings.trip.latitude;
+    location.longitude = this.sightings.trip.longitude
+    this.locationModal = this.modalCtrl.create(LocationEditPage,{location: location});
+    this.locationModal.present();
+
+    this.locationModal.onDidDismiss(data => {
+      console.log(data);
+      if (data){
+        this.sightings.location = data.location;
+        this.sightings.trip.locationId = data.location.id;
+      }
+      
+    });
+    
+  }
   
 
   loadMap(){
@@ -185,6 +212,8 @@ export class SightingExtraDetailPage {
     console.log(latLng);
     this.sightings.trip.latitude = latLng.lat();
     this.sightings.trip.longitude = latLng.lng();
+    this.currentLocationLatLng = latLng;
+    this.findClosestLocations(map);
   }
 
   getPosition(){
@@ -274,14 +303,15 @@ searchPlace(){
     if (creature.total < 1) creature.total = 0;
   }
 
-  async showToast(){
+  async showToast(message, classToAdd){
     
     const toast = await this.toastController.create({
-      message: 'Saved sightings',
+      message: message,
       showCloseButton: true,
       position: 'center',
       closeButtonText: 'Done',
-      duration: 5000
+      cssClass: classToAdd,
+      duration: 3000
     });
     toast.present();
   }
@@ -291,37 +321,46 @@ searchPlace(){
   }
 
   save(){
-    this.presentLoading();
-    if (this.mode == 1){
-      this.wildlifeProvider.saveSightings(this.sightings).subscribe(
-        data => {     
-            console.log(data);
-            this.showToast();
-            this.sightings.creatures.length = 0;
-            this.cancel();
-            this.navCtrl.setRoot(TabsPage);
-            this.navCtrl.popToRoot();
-            this.savingIndicator.dismiss();
-        },
-        err => {
-            // Log errors if any
-            console.log(err);
-        })
-      }
-    else {
-      this.wildlifeProvider.updateSightings(this.sightings).subscribe(
-        data => {   
-            console.log(data);
-            this.showToast();
-            this.cancel();
-            this.navCtrl.setRoot(TabsPage);
-            this.navCtrl.popToRoot();
-            this.savingIndicator.dismiss();
-        },
-        err => {
-            // Log errors if any
-            console.log(err);
-        })
+    
+
+    if (!this.sightings.trip.locationId ||this.sightings.trip.locationId < 0 ){
+      this.showToast("Please Select Location", "toast-warning");
+    }
+    else{
+
+      this.presentLoading();
+      
+      if (this.mode == 1){
+        this.wildlifeProvider.saveSightings(this.sightings).subscribe(
+          data => {     
+              console.log(data);
+              this.showToast("Sightings Saved", "toast-success");
+              this.sightings.creatures.length = 0;
+              this.cancel();
+              this.navCtrl.setRoot(TabsPage);
+              this.navCtrl.popToRoot();
+              this.savingIndicator.dismiss();
+          },
+          err => {
+              // Log errors if any
+              console.log(err);
+          })
+        }
+      else {
+        this.wildlifeProvider.updateSightings(this.sightings).subscribe(
+          data => {   
+              console.log(data);
+              this.showToast("Sightings Updated", "toast-success");
+              this.cancel();
+              this.navCtrl.setRoot(TabsPage);
+              this.navCtrl.popToRoot();
+              this.savingIndicator.dismiss();
+          },
+          err => {
+              // Log errors if any
+              console.log(err);
+          })
+        }
       }
     }
   

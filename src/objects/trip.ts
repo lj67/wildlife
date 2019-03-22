@@ -5,12 +5,13 @@ export class Trip{
 
     id: number;
     locationId: number;
+    locationName: string;
     date: string;
     weatherId: number;
     weatherName: string;
     tempId: number;
     time: string;
-    latitude : string;
+    latitude : number;
     longitude: number;
 
 }

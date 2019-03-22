@@ -6,7 +6,7 @@ export class Creature{
     id: number;
     name: string;
     description: string;
-    color: any[];
+    colour: any[];
     classId: number;
     subTypeId: number;
     size : string;
@@ -17,5 +17,6 @@ export class Creature{
     total: number;
     wingspan: string;
     family: string;
+    flightTimes: any[] = [];
 
 }

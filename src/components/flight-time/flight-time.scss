@@ -1,5 +1,9 @@
 flight-time {
 
+    .holder {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
     .bar {
         display: inline-block;
     }
@@ -62,6 +66,7 @@ flight-time {
 
     .title {
         font-size: 14px;
-        text-align: center
+        text-align: center;
+        margin-bottom: 5px;
     }
 }

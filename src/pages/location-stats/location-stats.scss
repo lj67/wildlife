@@ -1,0 +1,25 @@
+page-location-stats {
+
+    .chart {
+        margin-top: 20px;
+    }
+
+    ion-thumbnail {
+        min-width: 40px !important;
+        min-height: 40px !important;
+        margin: 0px !important;
+    }
+    
+    ion-thumbnail img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .label {
+        margin: 0px !important;
+    }
+
+    .table ion-col {
+        align-self: center;
+    }
+}

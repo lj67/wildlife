@@ -1,0 +1,72 @@
+<!--
+  Generated template for the LocationStatsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Location Stats</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+    <!-- <ion-list>
+        <ion-item>
+            <ion-label class="label-hdr">Stat Type</ion-label>
+          <ion-select class="select" value="perYear" okText="Okay" cancelText="Dismiss" [(ngModel)]="tableToShow">
+            <ion-option value="perYear">Sightings By Year</ion-option>
+            <ion-option value="perMonth">Sightings By Month</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list> -->
+    
+      <!-- <ion-item-divider></ion-item-divider> -->
+
+
+    <canvas baseChart class="chart" *ngIf="showChart" 
+    [data]="doughnutChartData" 
+    [labels]="doughnutChartLabels" 
+    [chartType]="doughnutChartType"
+    [options]="doughnutChartOptions">
+    </canvas>
+
+    <!-- <ion-list class="table" >
+        <ion-item>
+          No Sightings to report on
+        </ion-item>
+      </ion-list> -->
+
+      <ion-item-divider></ion-item-divider>
+
+    <ion-list class="table" >
+      <ion-item>
+          <ion-row>
+            <ion-col col-8>Butterfly</ion-col>
+            <ion-col col-4>Total</ion-col>
+          </ion-row>
+      </ion-item>
+      <ion-item *ngFor="let creature of locationStats.creatures" (click)="viewCreature(creature, $event)">
+        <ion-row>
+            <ion-col col-2>
+                <ion-thumbnail item-start>
+                    <img src="{{wildlifeProvider.imageBaseUrl + creature.imageName}}" *ngIf="creature.imageName">
+                  </ion-thumbnail>
+            </ion-col>
+          <ion-col col-6>
+            
+            {{creature.name}}
+          </ion-col>
+          <ion-col col-4>{{creature.total}} <ion-icon  float-right name="ios-arrow-forward"></ion-icon></ion-col>
+          
+        </ion-row>
+          
+      </ion-item>
+    </ion-list>
+    
+
+</ion-content>

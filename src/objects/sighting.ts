@@ -12,4 +12,5 @@ export class Sighting{
     tripId: number;
     trip: Trip = new Trip;
     creature: Creature = new Creature;
+    location: Location = new Location;
 }

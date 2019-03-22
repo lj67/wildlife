@@ -57,13 +57,38 @@ export class WildlifeProvider {
     .map(res => res );
   }
 
+  getSightingsForLocation(locationId) {
+    return this.http.get(this.apiRoot + "sighting?locationId=" + locationId )
+    .map(res => res );
+  }
+
   getImages(id, tripId, rating) {
     return this.http.get(this.apiRoot + "image?id=" + id + "&tripId=" + tripId + "&rating=" + rating)
     .map(res => res );
   }
 
+  getUploadedImages() {
+    return this.http.get(this.apiRoot + "image?uploads=1")
+    .map(res => res );
+  }
+
   getImagesForCreature(id, tripId, rating, creatureId) {
     return this.http.get(this.apiRoot + "image?id=" + id + "&tripId=" + tripId + "&rating=" + rating + "&creatureId=" + creatureId)
+    .map(res => res );
+  }
+
+  updateImage(image){
+    return this.http.put(this.apiRoot + "image", JSON.stringify(image))
+    .map(res => res );
+  }
+
+  addImage(image){
+    return this.http.post(this.apiRoot + "image", JSON.stringify(image))
+    .map(res => res );
+  }
+
+  tagImage(image){
+    return this.http.put(this.apiRoot + "tagImage", JSON.stringify(image))
     .map(res => res );
   }
 
@@ -77,8 +102,33 @@ export class WildlifeProvider {
     .map(res => res );
   }
 
+  getAllFlightTimes(){
+    return this.http.get(this.apiRoot + "flightTimes")
+    .map(res => res );
+  }
+
   getLocations(){
     return this.http.get(this.apiRoot + "location")
+    .map(res => res );
+  }
+
+  saveLocation(location){
+    return this.http.post(this.apiRoot + "location", JSON.stringify(location))
+    .map(res => res );
+  }
+
+  getLocationTypes(){
+    return this.http.get(this.apiRoot + "locationType")
+    .map(res => res );
+  }
+
+  getLocationStats(locationId){
+    return this.http.get(this.apiRoot + "locationStat/" + locationId)
+    .map(res => res );
+  }
+
+  getTrips() {
+    return this.http.get(this.apiRoot + "trip")
     .map(res => res );
   }
 

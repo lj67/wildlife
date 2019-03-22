@@ -19,25 +19,27 @@
 
 <ion-content padding>
 
+    <ion-label>Step 2: Select Species</ion-label>
+
     <ion-list>
-        <ion-item *ngFor="let creature of creatures" class="creature">
-          <ion-thumbnail item-start>
-            <img src="{{wildlifeProvider.imageBaseUrl + creature.imageName}}" *ngIf="creature.imageName">
-          </ion-thumbnail>
-          <div>{{creature.name}} </div>
-          <div>
-          
-            <button class="qty-button" ion-button item-end (click)="addSighting(creature)"><ion-icon name="add"></ion-icon></button>
-            <button class="qty-button" ion-button item-end (click)="removeSighting(creature)"><ion-icon name="remove"></ion-icon></button>
-            <ion-badge color="secondary" slot="end" *ngIf="creature.total > 0">{{creature.total}}</ion-badge>
-        </div>
-        </ion-item>
-      </ion-list>
+      <ion-item *ngFor="let creature of creatures" class="creature">
+        <ion-thumbnail item-start>
+          <img src="{{wildlifeProvider.imageBaseUrl + creature.imageName}}" *ngIf="creature.imageName">
+        </ion-thumbnail>
+        <div>{{creature.name}} </div>
+        <div>
+        
+          <button class="qty-button" ion-button item-end (click)="addSighting(creature)"><ion-icon name="add"></ion-icon></button>
+          <button class="qty-button" ion-button item-end (click)="removeSighting(creature)"><ion-icon name="remove"></ion-icon></button>
+          <ion-badge color="secondary" slot="end" *ngIf="creature.total > 0">{{creature.total}}</ion-badge>
+      </div>
+      </ion-item>
+    </ion-list>
 
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
     <ion-toolbar>
       <button ion-button (click)="save()" *ngIf="canSave()">Save</button>
     </ion-toolbar>
-  </ion-footer>
+  </ion-footer> -->

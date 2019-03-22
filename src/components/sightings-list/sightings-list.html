@@ -1,0 +1,18 @@
+<ion-list>
+    
+    <ion-item *ngFor="let sighting of sightings">
+        <ion-thumbnail item-start *ngIf="showImage">
+            <img src="{{wildlifeProvider.imageBaseUrl + sighting.creature.imageName}}" *ngIf="sighting.creature.imageName">
+        </ion-thumbnail>
+      <div class="date">
+          {{sighting.trip.date}}
+      </div>
+      <div class="name">
+          {{sighting.location.name}}
+      </div>
+      <div class="total" *ngIf="sighting.total > 1">
+          {{sighting.creature.name}} x{{sighting.total}}
+      </div>
+      <button ion-button clear item-end (click)="viewInfo(sighting)" >View</button>
+    </ion-item>
+  </ion-list>

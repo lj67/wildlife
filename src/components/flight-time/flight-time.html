@@ -1,20 +1,22 @@
-<div class="title">Sighting Chance Today: {{currentLevel == 0 ? 'None' : currentLevel == 1 ? 'Low' : currentLevel == 2 ? 'Medium' : 'High'}}</div>
+<div class="holder">
+  <div class="title" *ngIf="showTitle">Sighting Chance Today: {{currentLevel == 0 ? 'None' : currentLevel == 1 ? 'Low' : currentLevel == 2 ? 'Medium' : 'High'}}</div>
 
-<div class="legend-holder">
-  <div class="legend bar-low">Low</div>
-  <div class="legend bar-med">Med</div>
-  <div class="legend bar-high">High</div>
-</div>
-
-<div class="bar" *ngFor="let flight of flightTimes" 
-  [ngClass]="flight.level == 0 ? 'bar-none' : flight.level == 1 ? 'bar-low' : flight.level == 2 ? 'bar-med' : 'bar-high'"
-  [style.width] = "'calc(100%/44*' + flight.weeks + ')' | safe : 'style'">
-  &nbsp;
-</div>
-
-<div class="x-axis-holder">
-  <div class="x-axis" [ngClass]="currentWeekNumber == week ? 'current-week' : ''" *ngFor="let week of weeks">
-    {{week%2 == 0 ? week : "&nbsp;"}}
+  <div class="legend-holder" *ngIf="showLegend">
+    <div class="legend bar-low">Low</div>
+    <div class="legend bar-med">Med</div>
+    <div class="legend bar-high">High</div>
   </div>
+
+  <div class="bar" *ngFor="let flight of flightTimes" 
+    [ngClass]="flight.level == 0 ? 'bar-none' : flight.level == 1 ? 'bar-low' : flight.level == 2 ? 'bar-med' : 'bar-high'"
+    [style.width] = "'calc(100%/44*' + flight.weeks + ')' | safe : 'style'">
+    &nbsp;
+  </div>
+
+  <div class="x-axis-holder"  *ngIf="showAxis">
+    <div class="x-axis" [ngClass]="currentWeekNumber == week ? 'current-week' : ''" *ngFor="let week of weeks">
+      {{week%2 == 0 ? week : "&nbsp;"}}
+    </div>
+  </div>
+  <div class="x-axis-label" *ngIf="showAxis">Week Number</div>
 </div>
-<div class="x-axis-label">Weeks</div>

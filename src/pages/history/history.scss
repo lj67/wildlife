@@ -2,4 +2,15 @@ page-history {
     .date, .name, .total {
         display: inline;
     }
+
+    ion-thumbnail {
+        min-width: 40px !important;
+        min-height: 40px !important;
+    }
+    
+    ion-thumbnail img {
+        width: 40px !important;
+        height: 40px !important;
+    }
 }
+

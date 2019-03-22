@@ -16,23 +16,30 @@ import { Creature } from '../../objects/creature';
 export class FlightTimeComponent implements OnInit {
 
   @Input() creature : Creature;
+  @Input() showTitle : boolean = true;
+  @Input() showLegend : boolean = true;
+  @Input() showAxis : boolean = true;
   flightTimes: any[] = [];
   weeks = [];
   currentWeekNumber = 0;
   currentLevel = 0;
 
+
   constructor(public wildlifeProvider: WildlifeProvider, public modalCtrl: ModalController,
     public loadingController: LoadingController) {
-    console.log('Hello FlightTimeComponent Component');
-    
-
 
   }
 
   ngOnInit(){
     this.currentWeekNumber = this.getWeekNumber();
-    this.getFlightTimes();
-
+    if (this.creature.flightTimes){ 
+      this.flightTimes = this.creature.flightTimes;
+      this.processFlightTimes(this.flightTimes); 
+    }
+    else {
+      this.getFlightTimes();
+    }
+    
     for (var i=4;i<48;i++){
       this.weeks.push(i);
     }
@@ -48,6 +55,7 @@ export class FlightTimeComponent implements OnInit {
       },
       err => {
           // Log errors if any
+          this.getFlightTimes();
           console.log(err);
       })
   }

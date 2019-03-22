@@ -13,13 +13,14 @@
   </ion-header>
   
   
-  <ion-content padding>
+  <ion-content >
     <ion-list>
         <ion-item *ngFor="let sighting of sightings">
+            <ion-thumbnail item-start>
+                <img src="{{wildlifeProvider.imageBaseUrl + sighting.creature.imageName}}" *ngIf="sighting.creature.imageName">
+            </ion-thumbnail>
           <div class="date">
-              {{sighting.trip.date}}
-          </div>
-          <div class="name">
+              {{sighting.trip.date}}<br>
               {{sighting.creature.name}}
           </div>
           <div class="total" *ngIf="sighting.total > 1">

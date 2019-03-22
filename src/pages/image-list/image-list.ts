@@ -17,6 +17,8 @@ import { WildlifeProvider } from '../../providers/wildlife/wildlife';
 export class ImageListPage {
 
   images: any[] = [];
+  isEditMode = true;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public wildlifeProvider: WildlifeProvider) {
   }
@@ -30,13 +32,17 @@ export class ImageListPage {
     this.wildlifeProvider.getImages(0,0,5).subscribe(
       (images: any[]) => {
           this.images = images;
-          console.log(images);
+          //console.log(images);
           
       },
       err => {
           // Log errors if any
           console.log(err);
       })
+  }
+
+  toggleEditMode(){
+    this.isEditMode = !this.isEditMode;
   }
 
 }

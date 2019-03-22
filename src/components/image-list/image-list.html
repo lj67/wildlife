@@ -1,0 +1,76 @@
+<!-- <img src="https://www.newburyrealale.co.uk/nature/images/{{image.filename}}" 
+  *ngFor="let image of images"
+  (click)="viewDetail(image)"> -->
+
+  <ion-label *ngIf="images.length > 0" padding><div class="padding-left-10">Image {{slider.getActiveIndex()+1}} of {{images.length}}</div></ion-label>
+  <ion-label *ngIf="images.length == 0" padding><div text-center>No Images Found</div></ion-label>
+  <ion-slides pager="false" #mySlider (ionSlideDidChange)="slideChanged()" >
+      <ion-slide *ngFor="let image of images">
+          
+          <ion-card > 
+          
+              <img src="http://www.newburyrealale.co.uk/nature/images/{{image.filename}}"
+              imageViewer >
+          
+              
+              <ion-list>
+                <ion-item *ngIf="!editMode && image.creature"><ion-label padding >{{image.creature.name}}</ion-label></ion-item>
+                <ion-item *ngIf="editMode">
+                  <ion-select  placeholder="Select Creature" [(ngModel)]="image.creatureId">
+                      <ion-option value="{{creature.id}}" *ngFor="let creature of creatures">{{creature.name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item *ngIf="!editMode && image.location"><ion-label >Location: {{image.location.name}}</ion-label></ion-item>
+                <ion-item *ngIf="editMode">
+                  <ion-select  placeholder="Select Trip" [(ngModel)]="image.tripId">
+                    <ion-option value="{{trip.id}}" *ngFor="let trip of trips">{{trip.date + " " + trip.locationName}}</ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item *ngIf="image.trip"><ion-label>Date: {{image.trip.date + " " + image.trip.time}}</ion-label></ion-item>
+                <ion-item *ngIf="image.trip">
+                  <ion-label>Weather: &nbsp;&nbsp;&nbsp;
+                    <i *ngIf="image.trip.weatherId == 1" class="wi wi-day-sunny"></i>
+                    <i *ngIf="image.trip.weatherId == 2" class="wi wi-day-sunny-overcast"></i>
+                    <i *ngIf="image.trip.weatherId == 3" class="wi wi-day-cloudy"></i>
+                    <i *ngIf="image.trip.weatherId == 4" class="wi wi-day-rain"></i>
+                  </ion-label>
+                </ion-item>
+                <ion-item *ngIf="image.trip">
+                  <ion-label>Temp: &nbsp;&nbsp;&nbsp;
+                      <i *ngIf="image.trip.tempId == 1" class="wi wi-thermometer">< 0 </i>
+                      <i *ngIf="image.trip.tempId == 2" class="wi wi-thermometer"> 0 - 5 </i>
+                      <i *ngIf="image.trip.tempId == 3" class="wi wi-thermometer"> 6 - 10 </i>
+                      <i *ngIf="image.trip.tempId == 4" class="wi wi-thermometer"> 11 - 15 </i>
+                      <i *ngIf="image.trip.tempId == 5" class="wi wi-thermometer"> 16 - 20 </i>
+                      <i *ngIf="image.trip.tempId == 6" class="wi wi-thermometer"> 21 - 25 </i>
+                      <i *ngIf="image.trip.tempId == 7" class="wi wi-thermometer"> 25 - 30</i>
+                      <i *ngIf="image.trip.tempId == 8" class="wi wi-thermometer"> 30+</i>
+                  </ion-label>
+                  
+                </ion-item>
+                <ion-item *ngIf="image.meta">
+                    <ion-label>Meta:
+                    {{image.meta}}
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ionic3-star-rating 
+                    activeIcon = "ios-star"
+                    defaultIcon = "ios-star-outline"
+                    activeColor = "#488aff" 
+                    defaultColor = "#f4f4f4"
+                    readonly="false"
+                    [rating]="0">
+                </ionic3-star-rating>
+                </ion-item>
+                <ion-item>
+                  <button block ion-button (click)="save(image)" *ngIf="editMode">Save</button>
+                </ion-item>
+              </ion-list>
+          
+          </ion-card>
+          
+          
+      </ion-slide>
+      
+    </ion-slides>

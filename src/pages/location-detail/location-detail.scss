@@ -1,0 +1,39 @@
+page-location-detail {
+
+    .total-sightings {
+        background-color: color($colors, primary, base);
+        color: #FFF;
+        text-align: center;
+        margin: 10px;
+        padding: 10px;
+        padding-top: 20px;
+    }
+
+    .total-sightings-species {
+        background-color: #5573a9;
+        color: #FFF;
+        text-align: center;
+        margin: 10px;
+        padding: 10px;
+        padding-top: 20px;
+    }
+
+
+    .total-sightings h1, .total-sightings h5, .total-sightings-species h1, .total-sightings-species h5 {
+        color: #FFF;
+    } 
+
+    ion-thumbnail {
+        max-width: 40px !important;
+        max-height: 40px !important;
+        display: inline-block !important;
+        margin: 2px;
+    }
+
+    .card-title {
+        background-color: #5573a9;
+        color: #FFF;
+    }
+
+
+}

@@ -13,12 +13,8 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <ion-label>
-    Total Images: {{images.length}}
-  </ion-label>
-
-  <img src="{{wildlifeProvider.imageBaseUrl + image.filename}}" *ngFor="let image of images">
+  <image-list [images]="images"></image-list>
 
 </ion-content>

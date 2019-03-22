@@ -33,6 +33,20 @@ import { ChartsModule } from 'ng2-charts';
 import { FlightTimesPage } from '../pages/flight-times/flight-times';
 import { FlightTimeComponent } from '../components/flight-time/flight-time';
 import { ComponentsModule } from '../components/components.module';
+import { LocationEditPage } from '../pages/location-edit/location-edit';
+import { MenuPage } from '../pages/menu/menu';
+import { LocationDetailPage } from '../pages/location-detail/location-detail';
+import { LocationsPage } from '../pages/locations/locations';
+import { SightingsForLocationPage } from '../pages/sightings-for-location/sightings-for-location';
+import { LocationStatsPage } from '../pages/location-stats/location-stats';
+import { MapPage } from '../pages/map/map';
+import { ButterflySearchPage } from '../pages/butterfly-search/butterfly-search';
+import { ClassListPage } from '../pages/class-list/class-list';
+import { ImageDetailPage } from '../pages/image-detail/image-detail';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { ImageTaggerPage } from '../pages/image-tagger/image-tagger';
+import { FlightTimesListPage } from '../pages/flight-times-list/flight-times-list';
+import { StatsPage } from '../pages/stats/stats';
 
 @NgModule({
   declarations: [
@@ -51,7 +65,20 @@ import { ComponentsModule } from '../components/components.module';
     SightingsForCreaturePage,
     SightingsForCreatureStatsPage,
     ImagesForCreaturePage,
-    FlightTimesPage
+    FlightTimesPage,
+    LocationEditPage,
+    MenuPage,
+    LocationDetailPage,
+    LocationsPage,
+    SightingsForLocationPage,
+    LocationStatsPage,
+    MapPage,
+    ButterflySearchPage,
+    ClassListPage,
+    ImageDetailPage,
+    ImageTaggerPage,
+    FlightTimesListPage,
+    StatsPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +86,8 @@ import { ComponentsModule } from '../components/components.module';
     IonicModule.forRoot(MyApp),
     PipesModule,
     ChartsModule,
-    ComponentsModule
+    ComponentsModule,
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -78,7 +106,20 @@ import { ComponentsModule } from '../components/components.module';
     SightingsForCreaturePage,
     SightingsForCreatureStatsPage,
     ImagesForCreaturePage,
-    FlightTimesPage
+    FlightTimesPage,
+    LocationEditPage,
+    MenuPage,
+    LocationDetailPage,
+    LocationsPage,
+    SightingsForLocationPage,
+    LocationStatsPage,
+    MapPage,
+    ButterflySearchPage,
+    ClassListPage,
+    ImageDetailPage,
+    ImageTaggerPage,
+    FlightTimesListPage,
+    StatsPage
 
   ],
   providers: [
