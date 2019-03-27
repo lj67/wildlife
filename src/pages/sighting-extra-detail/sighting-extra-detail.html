@@ -100,20 +100,20 @@
 
     <ion-label>Location</ion-label>
 
-    <button ion-button block (click)="showLocationModal()"  *ngIf="locationsWithinKm.length == 0">Enter New Location</button>
+    <!-- <button ion-button block (click)="showLocationModal()"  *ngIf="locationsWithinKm.length == 0">Enter New Location</button> -->
 
     <ion-grid>
       <ion-row>
         <ion-col col-8>
           <div>
-            <ion-select placeholder="Select Location" [(ngModel)]="sightings.trip.locationId" *ngIf="locationsWithinKm.length > 0">
-                <ion-option value="{{location.id}}" *ngFor="let location of locationsWithinKm">{{location.name}}</ion-option>
+            <ion-select placeholder="Select Location" [(ngModel)]="sightings.trip.locationId" (ionChange)="locationChanged(sightings.trip.locationId)">
+                <ion-option value="{{location.id}}" *ngFor="let location of locations">{{location.name}}</ion-option>
             </ion-select>
           </div>
         </ion-col>
         <ion-col col-4>
           <div>
-            <button ion-button (click)="showLocationModal()"  *ngIf="locationsWithinKm.length > 0">New</button>
+            <button ion-button (click)="showLocationModal()"  >New</button>
           </div>
         </ion-col>
       </ion-row>
@@ -132,7 +132,11 @@
       <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
     </ion-list>
     <div #map id="map"></div> 
-    <!-- {{sightings.trip.latitude}} {{sightings.trip.longitude}} -->
+    <!-- <ion-list>
+        <ion-item >Lat {{sightings.trip.latitude}}</ion-item>
+        <ion-item >Long {{sightings.trip.longitude}}</ion-item>
+    </ion-list> -->
+    {{sightings.trip.latitude}} {{sightings.trip.longitude}}
 
     <!-- <table class="table table-striped">
       <tr>

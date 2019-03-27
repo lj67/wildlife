@@ -14,46 +14,17 @@
 
 
 <ion-content >
-  <ion-list>
-    <ion-item>
-        <ion-label class="label-hdr">Stat Type</ion-label>
-      <ion-select class="select" value="perYear" okText="Okay" cancelText="Dismiss" [(ngModel)]="tableToShow">
-        <ion-option value="perYear">Sightings By Year</ion-option>
-        <ion-option value="perMonth">Sightings By Month</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
 
-  <ion-item-divider></ion-item-divider>
-    <!-- <ion-segment (ionChange)="segmentChanged($event)">
-        <ion-segment-button value="perYear">
-          <ion-label>Sightings Per Year</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="enemies">
-          <ion-label>Enemies</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="enemies">
-            <ion-label>Enemies 2</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="enemies">
-              <ion-label>test</ion-label>
+    <div padding>
+        <ion-segment [(ngModel)]="tableToShow">
+            <ion-segment-button value="perYear">
+              <ion-label>Sightings By Year</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="enemies">
-                <ion-label>yrdhdfgdfg</ion-label>
-              </ion-segment-button>
-      </ion-segment> -->
-
-      <!-- <table class="table table-striped" >
-        <tr>
-          <th>Year</th>
-          <th>Total</th>
-        </tr>
-
-        <tr *ngFor="let year of stats.sightingsPerYear">
-            <td>{{year.year}}</td>
-            <td>{{year.total}}</td>
-          </tr>
-      </table> -->
+            <ion-segment-button value="perMonth">
+              <ion-label>Sightings By Month</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+      </div>
 
       <canvas baseChart class="chart" *ngIf="tableToShow == 'perYear' && stats.sightingsPerYear && stats.sightingsPerYear.length > 0" 
         [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"

@@ -136,6 +136,7 @@ export class SightingExtraDetailPage {
     this.locationModal.onDidDismiss(data => {
       console.log(data);
       if (data){
+        this.locations.push(data.location);
         this.sightings.location = data.location;
         this.sightings.trip.locationId = data.location.id;
       }
@@ -209,11 +210,17 @@ export class SightingExtraDetailPage {
     
     
     map.panTo(latLng);
-    console.log(latLng);
+    console.log("new location: " + latLng);
     this.sightings.trip.latitude = latLng.lat();
     this.sightings.trip.longitude = latLng.lng();
     this.currentLocationLatLng = latLng;
     this.findClosestLocations(map);
+  }
+
+  locationChanged(locationId){
+    var location = this.locations.find(location => location.id == locationId);
+    var latLng = new google.maps.LatLng(location.latitude, location.longitude);
+    this.placeMarkerAndPanTo(latLng, this.map);
   }
 
   getPosition(){

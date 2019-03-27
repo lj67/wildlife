@@ -38,7 +38,18 @@
             <ion-label>Longitude</ion-label>
             <ion-input type="text" formControlName="longitude"></ion-input>
           </ion-item>
+
+
+        
+
         <button ion-button block type="submit" class="save-button" [disabled]="!locationForm.valid">Save</button>
       </form>
+
+      <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+
+      <ion-list>
+        <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
+      </ion-list>
+      <div #map id="map"></div>
 
 </ion-content>

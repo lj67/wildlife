@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, ViewController } from 'ionic-angular';
 import { WildlifeProvider } from '../../providers/wildlife/wildlife';
-import { Location } from '@angular/common';
+
 import { LocationDetailPage } from '../location-detail/location-detail';
+import { Location } from '../../objects/location';
+
 
 /**
  * Generated class for the LocationsPage page.
@@ -19,7 +21,9 @@ import { LocationDetailPage } from '../location-detail/location-detail';
 export class LocationsPage {
 
   locations: Location[] = [];
+  filteredLocations: Location[] = [];
   loadingIndicator;
+  searchStr: string = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController,
@@ -38,6 +42,7 @@ export class LocationsPage {
     this.wildlifeProvider.getLocations().subscribe(
       (locations: any[]) => {
           this.locations = locations;
+          this.setFilteredLocations();
           console.log(locations);
           this.loadingIndicator.dismiss();
           
@@ -60,5 +65,20 @@ export class LocationsPage {
       location: location
     });
   }
+
+  setFilteredLocations(){
+
+    this.filteredLocations = this.filterLocations(this.searchStr);
+
+  }
+
+  filterLocations(searchTerm){
+
+    return this.locations.filter((location: Location) => {
+        return location.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });     
+
+}
+
 
 }

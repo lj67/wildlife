@@ -21,6 +21,9 @@
       Family
     </button>
 
+    <ion-searchbar [(ngModel)]="searchStr" (ionInput)="setFilteredCreatures()"></ion-searchbar>
+
+
     <ng-container *ngFor="let class of classes">
       <ion-list class="list-no-margin">
         <ion-item  text-wrap (click)="expandItem(class)" class="class-list">

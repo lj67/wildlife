@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { WildlifeProvider } from '../../providers/wildlife/wildlife';
+import { Stats } from '../../objects/stats';
 
 /**
  * Generated class for the StatsPage page.
@@ -15,11 +17,42 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class StatsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loadingIndicator;
+  stats: any[]=[];
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public wildlifeProvider: WildlifeProvider, public modalCtrl: ModalController,
+    public loadingController: LoadingController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatsPage');
+
+    this.getStats();
+  }
+
+  getStats(){
+    this.presentLoading();
+    this.wildlifeProvider.getStats().subscribe(
+      (stats: any[]) => {
+          this.stats = stats;
+
+          console.log(stats);
+          this.loadingIndicator.dismiss();
+          
+      },
+      err => {
+          // Log errors if any
+          console.log(err);
+      })
+  }
+
+  async presentLoading() {
+    this.loadingIndicator = await this.loadingController.create({
+      content: 'Getting images...'
+    });
+    await this.loadingIndicator.present();
   }
 
 }

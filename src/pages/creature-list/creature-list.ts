@@ -20,6 +20,8 @@ export class CreatureListPage {
 
   classes: any[] = [];
   orderMode = 'name';
+  filteredCreatures;
+  searchStr: string = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public wildlifeProvider: WildlifeProvider) {
   }
@@ -65,6 +67,19 @@ export class CreatureListPage {
       });
 
     } 
+
+    setFilteredCreatures(){
+
+      this.filteredCreatures = this.filterCreatures(this.searchStr);
+  
+    }
+  
+    filterCreatures(searchTerm){
+  
+      // return this.classes.filter((clazz: any) => {
+      //     return location.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+      // });
+    }
   
     viewDetail(creature, e){
       e.stopPropagation();

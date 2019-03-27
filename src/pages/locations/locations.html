@@ -14,10 +14,13 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
     <ion-list>
-      <ion-item *ngFor="let location of locations" text-wrap  (click)="viewDetail(location, $event)">
+      <ion-item>
+          <ion-searchbar [(ngModel)]="searchStr" (ionInput)="setFilteredLocations()"></ion-searchbar>
+      </ion-item>
+      <ion-item *ngFor="let location of filteredLocations" text-wrap  (click)="viewDetail(location, $event)">
         <div>{{location.name}}<br>{{location.typeName}}</div>
         <ion-icon item-right name="ios-arrow-forward"></ion-icon>
       </ion-item>

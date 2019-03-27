@@ -25,13 +25,14 @@
         </ion-segment-button>
       </ion-segment>
   </div>
+  <div>
     <h4 *ngIf="activeSegment == 'active'">Active In Week 
       <ion-select [(ngModel)]="activeWeek">
         <ion-option value="{{week}}" *ngFor="let week of weeks">{{week}}</ion-option>
       </ion-select>
     </h4>
     <h4 *ngIf="activeSegment == 'year'">All Flight Times By Week</h4>
-
+  </div>
     <ion-list *ngIf="activeSegment == 'active'">
         <ion-item *ngFor="let creature of high">
             <ion-thumbnail item-start>

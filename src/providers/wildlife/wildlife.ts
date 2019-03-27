@@ -93,7 +93,12 @@ export class WildlifeProvider {
   }
 
   getStatsForCreature(creatureId){
-    return this.http.get(this.apiRoot + "stats?type=all?" +"&creatureId=" + creatureId)
+    return this.http.get(this.apiRoot + "stats?type=all" +"&creatureId=" + creatureId)
+    .map(res => res );
+  }
+
+  getStats(){
+    return this.http.get(this.apiRoot + "stats?type=total")
     .map(res => res );
   }
 
@@ -114,6 +119,11 @@ export class WildlifeProvider {
 
   saveLocation(location){
     return this.http.post(this.apiRoot + "location", JSON.stringify(location))
+    .map(res => res );
+  }
+
+  updateLocation(location){
+    return this.http.put(this.apiRoot + "location", JSON.stringify(location))
     .map(res => res );
   }
 

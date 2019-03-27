@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { WildlifeProvider } from '../../providers/wildlife/wildlife';
 import { Location } from '../../objects/location';
@@ -26,10 +26,12 @@ import { LocationEditPage } from '../location-edit/location-edit';
 })
 export class LocationDetailPage {
 
+  
   location: Location;
   locationStats = {creatures: []};
   mapModal;
   locationModal;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public wildlifeProvider: WildlifeProvider, public modalCtrl: ModalController) {
