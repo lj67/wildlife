@@ -3,9 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { WildlifeProvider } from '../../providers/wildlife/wildlife';
 import { Location } from '../../objects/location';
 import { SightingsForLocationPage } from '../sightings-for-location/sightings-for-location';
-import { SightingsForCreatureStatsPage } from '../sightings-for-creature-stats/sightings-for-creature-stats';
 import { ImagesForCreaturePage } from '../images-for-creature/images-for-creature';
-import { FlightTimesPage } from '../flight-times/flight-times';
 import { CreatureListDetailPage } from '../creature-list-detail/creature-list-detail';
 import { LocationStatsPage } from '../location-stats/location-stats';
 import { MapPage } from '../map/map';

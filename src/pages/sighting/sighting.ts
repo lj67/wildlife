@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WildlifeProvider } from '../../providers/wildlife/wildlife';
-import { Observable } from 'rxjs/Observable';
-
 import { SightingDetailPage } from '../sighting-detail/sighting-detail';
 
 /**

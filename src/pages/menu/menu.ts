@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LocationsPage } from '../locations/locations';
-import { LocationDetailPage } from '../location-detail/location-detail';
 import { ButterflySearchPage } from '../butterfly-search/butterfly-search';
 import { ImageTaggerPage } from '../image-tagger/image-tagger';
 import { FlightTimesListPage } from '../flight-times-list/flight-times-list';

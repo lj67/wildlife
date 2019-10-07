@@ -12,5 +12,7 @@ export class Location{
     longitude: number;
     distance: number;
     imageName: string;
+    postcode: string;
+    county: string;
 
 }

@@ -28,6 +28,7 @@ export class FlightTimesListPage {
   high: any[] = [];
   activeSegment = "active";
   activeWeek = 0;
+  selectedDate = (new Date()).toISOString().substring(0, 10);
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public wildlifeProvider: WildlifeProvider) {
   }
@@ -38,8 +39,9 @@ export class FlightTimesListPage {
     for (var i=4;i<48;i++){
       this.weeks.push(i);
     }
-    this.currentWeek = this.getWeekNumber();
+    this.currentWeek = this.getWeekNumber(new Date);
     this.activeWeek = this.currentWeek;
+    
   }
 
   getCreatures(){
@@ -57,6 +59,9 @@ export class FlightTimesListPage {
   }
 
   processFlightTimes(){
+    this.low = [];
+    this.medium = [];
+    this.high = [];
     this.creatures.forEach(creature => {
       creature.flightTimes.forEach(flight => {
         if (flight.rangeStart <= this.currentWeek && flight.rangeEnd >= this.currentWeek){
@@ -76,8 +81,13 @@ export class FlightTimesListPage {
     });
   }
 
-  getWeekNumber() {
-    let d = new Date();
+  setCurrentWeek(date){
+    this.currentWeek = this.getWeekNumber(date);
+    this.processFlightTimes();
+  }
+
+  getWeekNumber(d) {
+    d = new Date(d);
     var date = new Date(d.getTime());
     date.setHours(0, 0, 0, 0);
     // Thursday in current week decides the year.

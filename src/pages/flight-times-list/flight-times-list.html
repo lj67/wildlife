@@ -16,22 +16,20 @@
 <ion-content>
 
   <div padding>
-    <ion-segment [(ngModel)]="activeSegment">
-        <ion-segment-button value="active">
-          <ion-label>Active Now</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="year">
-          <ion-label>All Year</ion-label>
-        </ion-segment-button>
-      </ion-segment>
+    <ion-segment [(ngModel)]="activeSegment" mode="md">
+      <ion-segment-button value="active">
+        <ion-label>Active Now</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="year">
+        <ion-label>All Year</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </div>
-  <div>
-    <h4 *ngIf="activeSegment == 'active'">Active In Week 
-      <ion-select [(ngModel)]="activeWeek">
-        <ion-option value="{{week}}" *ngFor="let week of weeks">{{week}}</ion-option>
-      </ion-select>
-    </h4>
-    <h4 *ngIf="activeSegment == 'year'">All Flight Times By Week</h4>
+  <div class="header-div">
+    <div *ngIf="activeSegment == 'active'">Active In Week</div>
+    <div *ngIf="activeSegment == 'year'">All Flight Times By Week</div>
+    <div><ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="selectedDate" (ionChange)="setCurrentWeek(selectedDate)"></ion-datetime></div>
+    
   </div>
     <ion-list *ngIf="activeSegment == 'active'">
         <ion-item *ngFor="let creature of high">

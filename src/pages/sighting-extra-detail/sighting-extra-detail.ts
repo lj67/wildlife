@@ -3,17 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController, A
 import { Sightings } from '../../objects/sightings';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker
- } from '@ionic-native/google-maps';
 import { WildlifeProvider } from '../../providers/wildlife/wildlife';
-import { SightingPage } from '../sighting/sighting';
 import { TabsPage } from '../tabs/tabs';
 import { Location } from '../../objects/location';
 import { LocationEditPage } from '../location-edit/location-edit';

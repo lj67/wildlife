@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { WildlifeProvider } from '../../providers/wildlife/wildlife';
 import { Sightings } from '../../objects/sightings';
-
 import { SightingExtraDetailPage } from '../sighting-extra-detail/sighting-extra-detail';
-import { Sighting } from '../../objects/sighting';
+
 
 /**
  * Generated class for the SightingDetailPage page.

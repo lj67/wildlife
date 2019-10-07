@@ -14,6 +14,17 @@ page-flight-times-list {
         margin: 0px !important;
     }
 
+    .item-cover {
+        height: auto !important;
+    }
+
+    .header-div {
+        align-items: center;
+        display: flex;
+        padding-left: 10px;
+        font-size: larger;
+    }
+
     .x-axis {
         display: inline-block;
         width: calc(100%/44);

@@ -24,14 +24,14 @@
     <ion-searchbar [(ngModel)]="searchStr" (ionInput)="setFilteredCreatures()"></ion-searchbar>
 
 
-    <ng-container *ngFor="let class of classes">
+    <ng-container *ngFor="let class of filteredClasses">
       <ion-list class="list-no-margin">
         <ion-item  text-wrap (click)="expandItem(class)" class="class-list">
           <div>{{class.name}}</div>
           <ion-icon color="success" item-right [name]="class.expanded ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
         </ion-item>
           <ion-list *ngIf="class.expanded">
-            <ion-item *ngFor="let creature of class.creatures | sortCreatures: {property: orderMode, order: 1}" text-wrap class="creature" (click)="viewDetail(creature, $event)">
+            <ion-item *ngFor="let creature of class.creatures " text-wrap class="creature" (click)="viewDetail(creature, $event)">
               {{creature.name}}
           
             </ion-item>
